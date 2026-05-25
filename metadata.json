@@ -1,0 +1,6 @@
+{
+  "name": "Розклад метро Харкова",
+  "description": "Актуальний розклад руху поїздів Харківського метрополітену в реальному часі, розрахунок маршрутів та інтелектуальний помічник.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
