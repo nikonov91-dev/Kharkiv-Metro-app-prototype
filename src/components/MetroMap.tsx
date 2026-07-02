@@ -81,16 +81,16 @@ export default function MetroMap({ onStationSelect, selectedStationId, stations 
   };
 
   return (
-    <div className="bg-[#121214] p-3.5 rounded-lg border border-neutral-800 shadow-xs flex flex-col space-y-3" id="interactive-metro-map-panel">
+    <div className="bg-theme-card p-3.5 rounded-lg border border-theme-border shadow-xs flex flex-col space-y-3" id="interactive-metro-map-panel">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2" id="map-header-panel">
         <div>
-          <h3 className="text-sm font-bold text-white flex items-center space-x-2" id="map-title">
+          <h3 className="text-sm font-bold text-theme-text flex items-center space-x-2" id="map-title">
             <Compass size={15} className="text-[#00AEEF] animate-spin-slow" />
             <span className="font-mono uppercase text-xs tracking-tight">ІНТЕРАКТИВНА СХЕМА ЛІНІЙ</span>
           </h3>
-          <p className="text-[11px] text-neutral-400">Натисніть на станцію для виведення розкладу та параметрів укриття</p>
+          <p className="text-[11px] text-theme-text-muted">Натисніть на станцію для виведення розкладу та параметрів укриття</p>
         </div>
-        <div className="flex items-center space-x-3 text-[10px] font-mono font-medium text-neutral-500" id="map-legend">
+        <div className="flex items-center space-x-3 text-[10px] font-mono font-medium text-theme-text-muted" id="map-legend">
           <span className="flex items-center space-x-1">
             <span className="w-1.5 h-1.5 rounded-full bg-red-500 shadow-[0_0_4px_#ef4444]" />
             <span>Холодногірська</span>
@@ -107,7 +107,7 @@ export default function MetroMap({ onStationSelect, selectedStationId, stations 
       </div>
 
       {/* SVG Canvas representing lines */}
-      <div className="w-full overflow-x-auto border border-neutral-800 rounded-lg bg-[#0c0c0e] p-2 scrollbar-thin" id="svg-map-scrollable-container">
+      <div className="w-full overflow-x-auto border border-theme-border rounded-lg bg-theme-bg p-2 scrollbar-thin" id="svg-map-scrollable-container">
         <svg 
           viewBox="0 0 810 500" 
           className="w-full min-w-[720px] h-[440px] select-none mx-auto" 
@@ -155,7 +155,7 @@ export default function MetroMap({ onStationSelect, selectedStationId, stations 
               y1={trans.from.y}
               x2={trans.to.x}
               y2={trans.to.y}
-              stroke="#121214"
+              stroke="var(--bg-card)"
               strokeWidth="5"
               strokeLinecap="round"
               opacity="1"
@@ -243,7 +243,7 @@ export default function MetroMap({ onStationSelect, selectedStationId, stations 
                     cx={node.x}
                     cy={node.y}
                     r={isSelected ? '7' : '5'}
-                    fill="#121214"
+                    fill="var(--bg-card)"
                     stroke={nodeColor}
                     strokeWidth="3.5"
                     className="transition-all duration-200 group-hover:r-7"
@@ -266,8 +266,8 @@ export default function MetroMap({ onStationSelect, selectedStationId, stations 
                     x={node.labelX}
                     y={node.labelY}
                     textAnchor={node.align}
-                    className="text-[9px] font-sans fill-neutral-900 font-bold select-none pointer-events-none select-none"
-                    stroke="#0c0c0e"
+                    className="text-[9px] font-sans fill-neutral-900 font-bold select-none pointer-events-none"
+                    stroke="var(--bg-app)"
                     strokeWidth="3.5"
                     paintOrder="stroke"
                     opacity="0.9"
@@ -284,8 +284,8 @@ export default function MetroMap({ onStationSelect, selectedStationId, stations 
                     textAnchor={node.align}
                     className={`text-[9px] font-sans pointer-events-none select-none transition-colors ${
                       isSelected 
-                        ? 'fill-white font-extrabold text-[10px]' 
-                        : 'fill-neutral-450 font-medium group-hover:fill-white group-hover:font-semibold'
+                        ? 'fill-theme-text font-extrabold text-[10px]' 
+                        : 'fill-theme-text-muted font-medium group-hover:fill-theme-text group-hover:font-semibold'
                     }`}
                   >
                     {node.name}
@@ -296,17 +296,6 @@ export default function MetroMap({ onStationSelect, selectedStationId, stations 
             })
           )}
         </svg>
-      </div>
-
-      <div className="flex flex-col sm:flex-row items-center justify-between text-[11px] text-neutral-500 gap-2 border-t pt-2.5 border-neutral-800" id="map-hints-row">
-        <span className="flex items-center space-x-1" id="school-hint-box">
-          <span className="text-amber-500 font-bold">🎓</span>
-          <span>— діє підземна <b>«Метрошкола»</b> на базі станції</span>
-        </span>
-        <span className="flex items-center space-x-1 text-[10px] font-mono" id="alert-hint-box">
-          <AlertCircle size={10} className="text-neutral-500" />
-          <span>Схема Харківського метрополітену © 2026</span>
-        </span>
       </div>
     </div>
   );

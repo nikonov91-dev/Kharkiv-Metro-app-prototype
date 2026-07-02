@@ -33,8 +33,8 @@ export default function AlertPanel({ announcements, onToggleAlertMode, airRaidAc
           onClick={onToggleAlertMode}
           className={`cursor-pointer transition-all duration-300 p-3 rounded-lg border flex items-center justify-between ${
             airRaidActive 
-              ? 'bg-red-950/20 border-red-500/40 hover:bg-red-950/30' 
-              : 'bg-emerald-950/20 border-emerald-550/40 hover:bg-emerald-950/30'
+              ? 'bg-red-950/20 border-red-500/40 hover:bg-red-950/30 text-rose-100' 
+              : 'bg-emerald-950/20 border-emerald-550/40 hover:bg-emerald-950/30 text-emerald-100'
           }`}
           id="air-raid-status-stat"
         >
@@ -43,33 +43,33 @@ export default function AlertPanel({ announcements, onToggleAlertMode, airRaidAc
               <ShieldAlert size={16} />
             </div>
             <div>
-              <p className="text-[10px] text-neutral-400 uppercase tracking-wider font-mono">ПОВІТРЯНА ТРИВОГА</p>
-              <h4 className={`text-xs font-bold font-mono tracking-tight ${airRaidActive ? 'text-red-450' : 'text-emerald-450'}`}>
+              <p className="text-[10px] text-theme-text-muted uppercase tracking-wider font-mono">ПОВІТРЯНА ТРИВОГА</p>
+              <h4 className={`text-xs font-bold font-mono tracking-tight ${airRaidActive ? 'text-red-400' : 'text-emerald-500'}`}>
                 {airRaidActive ? '🔴 АКТИВНА / УКРИТТЯ 24/7' : '🟢 ВІДБІЙ / ШТАТНИЙ РЕЖИМ'}
               </h4>
             </div>
           </div>
-          <span className="text-[9px] font-bold px-2 py-1 rounded bg-neutral-800 border border-neutral-700 text-neutral-300 hover:text-white transition-colors">
+          <span className="text-[9px] font-bold px-2 py-1 rounded bg-theme-input border border-theme-border text-theme-text-muted hover:text-theme-text transition-colors">
             {airRaidActive ? 'Змінити симуляцію' : 'Увімкнути тривогу'}
           </span>
          </div>
 
-        <div className="p-3 rounded-lg bg-neutral-900/30 border border-neutral-800 flex items-center space-x-3" id="curfew-status-stat">
-          <div className="p-2 rounded-md bg-amber-500/20 border border-amber-500/40 text-amber-400 shrink-0">
+        <div className="p-3 rounded-lg bg-theme-input/40 border border-theme-border flex items-center space-x-3" id="curfew-status-stat">
+          <div className="p-2 rounded-md bg-amber-500/20 border border-amber-500/40 text-amber-500 shrink-0">
             <Clock size={16} />
           </div>
           <div>
-            <p className="text-[10px] text-neutral-400 uppercase tracking-wider font-mono">КОМЕНДАНТСЬКА ГОДИНА</p>
-            <h4 className="text-xs font-bold text-amber-400 font-mono">23:00 — 05:00 (Метро зачинене для транзиту)</h4>
+            <p className="text-[10px] text-theme-text-muted uppercase tracking-wider font-mono">КОМЕНДАНТСЬКА ГОДИНА</p>
+            <h4 className="text-xs font-bold text-amber-500 font-mono">23:00 — 05:00 (Метро зачинене для транзиту)</h4>
           </div>
         </div>
 
-        <div className="p-3 rounded-lg bg-neutral-900/30 border border-neutral-800 flex items-center space-x-3" id="power-grid-stat">
+        <div className="p-3 rounded-lg bg-theme-input/40 border border-theme-border flex items-center space-x-3" id="power-grid-stat">
           <div className="p-2 rounded-md bg-[#00AEEF]/20 border border-[#00AEEF]/40 text-[#00AEEF] shrink-0">
             <Zap size={16} />
           </div>
           <div>
-            <p className="text-[10px] text-neutral-400 uppercase tracking-wider font-mono">ЕНЕРГОПОСТАЧАННЯ ЛІНІЙ</p>
+            <p className="text-[10px] text-theme-text-muted uppercase tracking-wider font-mono">ЕНЕРГОПОСТАЧАННЯ ЛІНІЙ</p>
             <h4 className="text-xs font-bold text-[#00AEEF] font-mono">100% СТАБІЛЬНЕ (РЕЗЕРВОВАНЕ)</h4>
           </div>
         </div>
@@ -99,7 +99,7 @@ export default function AlertPanel({ announcements, onToggleAlertMode, airRaidAc
               className={`p-3 rounded-lg border flex items-start space-x-3 relative transition-all duration-200 ${
                 ann.type === 'warning' 
                   ? 'bg-red-950/15 border-red-900/40 text-red-200' 
-                  : 'bg-neutral-900/40 border-neutral-800 text-neutral-300'
+                  : 'bg-theme-input/20 border-theme-border text-theme-text-muted'
               }`}
               id={`announcement-${ann.id}`}
             >
@@ -108,14 +108,14 @@ export default function AlertPanel({ announcements, onToggleAlertMode, airRaidAc
               </div>
               <div className="flex-1">
                 <div className="flex items-center space-x-2">
-                  <h4 className="font-bold text-xs text-white">{ann.title}</h4>
-                  <span className="text-[9px] text-neutral-400 font-mono bg-neutral-800 px-1.5 py-0.5 rounded border border-neutral-700">{ann.timestamp}</span>
+                  <h4 className="font-bold text-xs text-theme-text">{ann.title}</h4>
+                  <span className="text-[9px] text-theme-text-muted font-mono bg-theme-input px-1.5 py-0.5 rounded border border-theme-border">{ann.timestamp}</span>
                 </div>
-                <p className="text-xs text-neutral-400 mt-1 leading-relaxed">{ann.message}</p>
+                <p className="text-xs text-theme-text-muted mt-1 leading-relaxed">{ann.message}</p>
               </div>
               <button 
                 onClick={() => setClosedIds(prev => [...prev, ann.id])}
-                className="text-neutral-500 hover:text-white p-1 rounded-full transition-colors shrink-0 cursor-pointer"
+                className="text-theme-text-dim hover:text-theme-text p-1 rounded-full transition-colors shrink-0 cursor-pointer"
                 id={`dismiss-announcement-button-${ann.id}`}
                 title="Закрити"
               >
